@@ -29,6 +29,12 @@ async function run() {
 			const restCountries = await cursor.toArray();
 			res.send(restCountries);
 		});
+		app.get("/countries/:id", async (req, res) => {
+			const id = req.params.id;
+			const query = { _id: ObjectId(id) };
+			const country = await countries.findOne(query);
+			res.send(country);
+		});
 	} finally {
 	}
 }
